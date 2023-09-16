@@ -1,0 +1,43 @@
+BASE DE DATOS POR CMDER
+
+mysql -u root -p    // CONECTAR AL SERVIDR MYSQL CON USUARIO U(ROOT) PASWORD P(NINGUNO)
+SHOW DATABASES;     // ENTRAR A BASE DE DATOS DEL SISTEMA
+CREATE DATABASE practica1;   // creacion de base de datos con nombre practica1
+USE practica1;     // para usar la base de datos selecionada
+CREATE TABLE usuarios(
+	id INT,
+	nomusuario VARCHAR(50),
+	correo VARCHAR(100),
+	edad INT,
+	estado ENUM('activo', 'inactivo') DEFAULT 'inactivo,
+	biog TEXT,
+	fec_creacion TIMESTAMP    
+);
+		//TIMESTAMP = FECHA DE CREACION EXACTA HORA MIINUTOS Y SEGUNDOS
+SHOW TABLES;    // FERIFIACION DE LAS TABLAS
+DROP TABLE usuarios;   //eliminar tabla
+DESC usuarios;      // VERIFCAR LAS TABLAS 
+
+CREATE TABLE usuarios(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	nomusuario VARCHAR(50) UNIQUE NOT NULL,
+	correo VARCHAR(100) UNIQUE NOT NULL,
+	edad INT UNSIGNED NOT NULL,
+	estado ENUM('activo', 'inactivo') DEFAULT 'inactivo',
+	biog TEXT,
+	fec_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+EXPLICADO //
+CREATE TABLE usuarios(
+	id INT AUTO_INCREMENT PRIMARY KEY,   // ID CON AUTO INCREMENTO Y ESTA COLUMNA SERA LA LLAVE PRIMARIA
+	nomusuario VARCHAR(50) UNIQUE NOT NULL,   // SERA UNICO NO DUPLICADO  Y OBLIGATORIAMENTE TIENE QUE ALMACENAR ALGO
+	correo VARCHAR(100) UNIQUE NOT NULL,    // OBLIGATORIAMENTE TIENE QUE ALMACENAR ALGUN VALOR
+	edad INT UNSIGNED NOT NULL,           // NO ALMACENA CON SIGNO NEGATIVO
+	estado ENUM('activo', 'inactivo') DEFAULT 'inactivo,    //VALOR POR DEFAULT
+	biog TEXT,
+	fec_creacion TIMESTAMP   DEFAULT CURRENT_TIMESTAMP  // EL VALOR DAFAUL SERALA FECHA EXACTA
+);
+
+DROP TABLE usuarios;   //eliminar tabla
+INSERT INTO usuarios (nomusuario, correo, edad) VALUES ('walter', 'walter1@gmail.com', 28);  //insertar datos a la tabla
